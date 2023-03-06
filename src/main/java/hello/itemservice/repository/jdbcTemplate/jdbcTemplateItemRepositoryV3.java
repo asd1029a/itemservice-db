@@ -53,6 +53,8 @@ public class jdbcTemplateItemRepositoryV3 implements ItemRepository {
                 .addValue("quantity", updateParam.getQuantity())
                 .addValue("id", itemId);
 
+        log.info("");
+
         template.update(sql, param);
     }
 
