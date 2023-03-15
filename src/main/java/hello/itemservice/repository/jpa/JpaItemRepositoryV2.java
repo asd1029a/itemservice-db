@@ -6,6 +6,7 @@ import hello.itemservice.repository.ItemSearchCond;
 import hello.itemservice.repository.ItemUpdateDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 import java.util.Optional;
@@ -35,6 +36,17 @@ public class JpaItemRepositoryV2 implements ItemRepository {
 
     @Override
     public List<Item> findAll(ItemSearchCond cond) {
-        return null;
+        String itemName = cond.getItemName();
+        Integer maxPrice = cond.getMaxPrice();
+
+        if(StringUtils.hasText(itemName) && maxPrice != null) {
+            return springDataJpaItemRepository.findItems("%"+itemName+"%", maxPrice);
+        } else if (StringUtils.hasText(itemName)) {
+            return springDataJpaItemRepository.findByItemNameLike("%"+itemName+"%");
+        } else if (maxPrice != null) {
+            return springDataJpaItemRepository.findByPriceLessThanEqual(maxPrice);
+        } else {
+            return springDataJpaItemRepository.findAll();
+        }
     }
 }
