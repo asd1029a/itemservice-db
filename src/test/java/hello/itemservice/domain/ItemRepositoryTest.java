@@ -25,7 +25,7 @@ class ItemRepositoryTest {
 //    @Autowired
 //    PlatformTransactionManager platformTransactionManager;
 //
-//    TransactionStatus status;
+//    TransactionStatus status;;
 
     @BeforeEach
     void beforeEach() {
@@ -86,6 +86,7 @@ class ItemRepositoryTest {
         //둘 다 없음 검증
         test(null, null, item1, item2, item3);
         test("", null, item1, item2, item3);
+
 
         //itemName 검증
         test("itemA", null, item1, item2);
