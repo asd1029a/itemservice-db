@@ -25,7 +25,7 @@ class ItemRepositoryTest {
 //    @Autowired
 //    PlatformTransactionManager platformTransactionManager;
 //
-//    TransactionStatus status;;
+//    TransactionStatus status;
 
     @BeforeEach
     void beforeEach() {
